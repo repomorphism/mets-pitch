@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Metabolic Syndrome Risk Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Metabolic Syndrome Risk Calculator">
+  <meta name="author" content="Hsing Liu">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Metabolic Syndrome Risk Calculator</h1>
+    <h2>Coursera -- Developing Data Products</h2>
+    <p>Hsing Liu<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What is metabolic syndrome?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Metabolic syndrome is a collection of metabolic risk factors.  It is diagnosed when a person has
+three of the following five conditions:</p>
+
+<ul>
+<li>Abdominal obesity</li>
+<li>High blood pressure</li>
+<li>High triglyceride level</li>
+<li>Low HDL cholesterol level</li>
+<li>High fasting blood sugar level</li>
+</ul>
+
+<p>If you have metabolic syndrome, you&#39;re in much higher risk for cardiovascular disease and diabetes.  It is estimated that around a third of the US population is afflicted, and that proportion increases with age.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>What is the metabolic syndrome risk calculator?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="./assets/img/img_inputs.png" style="float:right;padding:30px" /></p>
+
+<p>To get a proper diagnosis of metabolic syndrome, you&#39;d need to go to a hospital and do a blood test.  However, we can calculate a &quot;risk score&quot; for metabolic syndrome, using two measurements that are much easier to obtain.</p>
+
+<ol>
+<li><p>Waist circumference: Place the tape measure around your natural waist line, just above the hip bone.  Record the value in either centimeters or inches.</p></li>
+<li><p>Diastolic blood pressure: This is the lower of the two values when you measure your blood pressure.  You can find a blood pressure monitor in many places, but since they&#39;re quite inexpensive, you might consider having one at home -- it may be a good investment.</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How to interpret the result?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="./assets/img/img_results.png" style="float:right;padding-left:15px" /></p>
+
+<p>After clicking the &quot;Calculate&quot; button, you&#39;ll see your risk score displayed as a percentage.  This number roughly corresponds to the odds of having the metabolic syndrome.</p>
+
+<p>You&#39;ll also see the waist and blood pressure values plotted on a gradient.  If the point lands in the yellow or red area, that indicates a high risk of metabolic syndrome, and you should really start taking better care of your health!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Reference</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The MetS risk score is calculated as follows:</p>
+
+<p>\[ Logit(MetS\ Odds) = -27.07 + 0.193 \times WC\ (cm) + 0.109 \times DBP\ (mmHg) + 1.47 \times
+\text{female}\]</p>
+
+<p>For example, for a female with 75 cm waist circumference, 80 mmHg diastolic blood pressure:</p>
+
+<pre><code class="r">logit_odds &lt;- -27.07 + 0.193 * 75 + 0.109 * 80 + 1.47
+1 / (1 + exp(-logit_odds))    # Sigmoid function
+</code></pre>
+
+<pre><code>## [1] 0.08279
+</code></pre>
+
+<p><strong>The above formula</strong> is adapted from a trained logistic regression model, originating from the research paper listed below.  Please keep in mind that this paper studied a very specific demographic group, which may or may not generalize well to the general population.</p>
+
+<p>Lin CC, Bai YM, Chen JY, Hwang TJ, Chen TT, Chiu HW, Li YC. Easy and Low-Cost Identification of Metabolic Syndrome in Patients Treated with Second-Generation Antipsychotics: Artificial Neural Network and Logistic Regression Models. J Clin Psychiatry 2010; 71(3):225-234.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What is metabolic syndrome?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='What is the metabolic syndrome risk calculator?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How to interpret the result?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Reference'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
